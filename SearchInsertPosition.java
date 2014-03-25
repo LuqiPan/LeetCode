@@ -23,3 +23,26 @@ public class Solution {
         return A.length;
     }
 }
+
+public class Solution {
+    public int searchInsert(int[] A, int target) {
+        int len = A.length;
+        if (len == 0) {
+            return 0;
+        }
+        int low = 0;
+        int high = len-1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (A[mid] >= target && (mid == 0 || A[mid-1] < target)) {
+                return mid;
+            }
+            if (A[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
