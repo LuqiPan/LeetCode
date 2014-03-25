@@ -35,3 +35,23 @@ public class Solution {
         return head;
     }
 }
+
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode p = head;
+        ListNode cur = head;
+
+        while (p.next != null) {
+            p = p.next;
+            if (p.val != cur.val) {
+                cur.next = p;
+                cur = cur.next;
+            }
+        }
+        cur.next = null;
+        return head;
+    }
+}
