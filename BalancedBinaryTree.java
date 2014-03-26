@@ -58,3 +58,29 @@ public class Solution {
         return new Result(leftBalanced & rightBalanced, Math.max(rightHeight, leftHeight) + 1);
     }
 }
+
+public class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return getDepth(root, 0) != -1;
+    }
+    public int getDepth(TreeNode n, int depth) {
+        if (n == null) {
+            return depth;
+        }
+        if (n.left == null && n.right == null) {
+            return depth + 1;
+        }
+        int left = getDepth(n.left, depth+1);
+        if (left == -1) {
+            return -1;
+        }
+        int right = getDepth(n.right, depth+1);
+        if (right == -1 || Math.abs(left-right) > 1) {
+            return -1;
+        }
+        return Math.max(left, right);
+    }
+}
