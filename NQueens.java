@@ -21,54 +21,54 @@
  *    ]
  */
 
-    public class Solution {
-        public ArrayList<String[]> solveNQueens(int n) {
-            ArrayList<String[]> result = new ArrayList<String[]>();
-            int[] pos = new int[n];
-            NQ(n, result, pos, 0);
-            return result;
+public class Solution {
+    public ArrayList<String[]> solveNQueens(int n) {
+        ArrayList<String[]> result = new ArrayList<String[]>();
+        int[] pos = new int[n];
+        NQ(n, result, pos, 0);
+        return result;
+    }
+    public void NQ(int n, ArrayList<String[]> result, int[] pos, int depth) {
+        if (n == depth) {
+            result.add(convert(pos, n));
+            return;
         }
-        public void NQ(int n, ArrayList<String[]> result, int[] pos, int depth) {
-            if (n == depth) {
-                result.add(convert(pos, n));
-                return;
-            }
 
-            for (int i = 0 ; i < n ; i++) {
-                if (checkValid(pos, depth, i)) {
-                    pos[depth] = i;
-                    NQ(n, result, pos, depth + 1);
-                } else {
-                    //alter return to continue and it passed
-                    //really should watch for this!!!
-                    continue;
-                }
+        for (int i = 0 ; i < n ; i++) {
+            if (checkValid(pos, depth, i)) {
+                pos[depth] = i;
+                NQ(n, result, pos, depth + 1);
+            } else {
+                //alter return to continue and it passed
+                //really should watch for this!!!
+                continue;
             }
-        }
-        public boolean checkValid(int[] pos, int depth, int i) {
-            for (int j = 0 ; j < depth ; j++) {
-                if (pos[j] == i) {
-                    return false;
-                }
-                if (Math.abs(pos[j] - i) == Math.abs(j - depth)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        public String[] convert(int[] pos, int n) {
-            String[] result = new String[n];
-            for (int i = 0 ; i < n ; i++) {
-                String row = new String();
-                for (int j = 0 ; j < n ; j++) {
-                    if (j == pos[i]) {
-                        row += 'Q';
-                    } else {
-                        row += '.';
-                    }
-                }
-                result[i] = row;
-            }
-            return result;
         }
     }
+    public boolean checkValid(int[] pos, int depth, int i) {
+        for (int j = 0 ; j < depth ; j++) {
+            if (pos[j] == i) {
+                return false;
+            }
+            if (Math.abs(pos[j] - i) == Math.abs(j - depth)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public String[] convert(int[] pos, int n) {
+        String[] result = new String[n];
+        for (int i = 0 ; i < n ; i++) {
+            String row = new String();
+            for (int j = 0 ; j < n ; j++) {
+                if (j == pos[i]) {
+                    row += 'Q';
+                } else {
+                    row += '.';
+                }
+            }
+            result[i] = row;
+        }
+        return result;
+    }
+}
