@@ -38,3 +38,22 @@ public class Solution {
         return n;
     }
 }
+
+public class Solution {
+    public TreeNode sortedArrayToBST(int[] num) {
+        return toBST(num, 0, num.length - 1);
+    }
+    public TreeNode toBST(int[] num, int start, int end) {
+        if (end < start) {
+            return null;
+        }
+        if (end == start) {
+            return new TreeNode(num[start]);
+        }
+        int mid = (start + end) / 2;
+        TreeNode n = new TreeNode(num[mid]);
+        n.left = toBST(num, start, mid - 1);
+        n.right = toBST(num, mid + 1, end);
+        return n;
+    }
+}
