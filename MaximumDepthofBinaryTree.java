@@ -36,3 +36,18 @@ public class Solution {
         return Math.max(leftDepth, rightDepth);
     }
 }
+
+public class Solution {
+    public int maxDepth(TreeNode root) {
+        return maxDepthRec(root, 0);
+    }
+    public int maxDepthRec(TreeNode n, int depth) {
+        if (n == null) {
+            return depth;
+        }
+        if (n.left == null && n.right == null) {
+            return depth + 1;
+        }
+        return Math.max(maxDepthRec(n.left, depth + 1), maxDepthRec(n.right, depth + 1));
+    }
+}
